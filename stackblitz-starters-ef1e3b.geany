@@ -1,0 +1,44 @@
+[editor]
+line_wrapping=false
+line_break_column=72
+auto_continue_multiline=true
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=false
+strip_trailing_spaces=false
+replace_tabs=false
+
+[indentation]
+indent_width=2
+indent_type=2
+indent_hard_tab_width=8
+detect_indent=false
+detect_indent_width=false
+indent_mode=2
+
+[project]
+name=stackblitz-starters-ef1e3b
+base_path=/Users/neocarvajal/Sites/HeavyDutyBootcamp/Viernes 18/Reto/stackblitz-starters-ef1e3b
+description=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=0
+FILE_NAME_0=0;TypeScript;0;EUTF-8;2;1;0;%2FUsers%2Fneocarvajal%2FSites%2FHeavyDutyBootcamp%2FViernes%2018%2FReto%2Fstackblitz-starters-ef1e3b%2Fsrc%2Fapp%2Fpage.tsx;0;2
+
+[VTE]
+last_dir=/Users/neocarvajal
+
+[prjorg]
+expanded_paths=/Users/neocarvajal/Sites/HeavyDutyBootcamp/Viernes 18/Reto/stackblitz-starters-ef1e3b/src/app/form;/Users/neocarvajal/Sites/HeavyDutyBootcamp/Viernes 18/Reto/stackblitz-starters-ef1e3b/src/app/modal;
+source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
+header_patterns=*.h;*.H;*.hpp;*.hxx;*.h++;*.hh;
+ignored_dirs_patterns=.*;CVS;
+ignored_file_patterns=*.o;*.obj;*.a;*.lib;*.so;*.dll;*.lo;*.la;*.class;*.jar;*.pyc;*.mo;*.gmo;
+generate_tag_prefs=0
+show_empty_dirs=true
+external_dirs=
