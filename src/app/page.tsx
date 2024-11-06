@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import EventCard from "@/app/components/EventCard";
-import { eventData } from "@/app/utils/dataMock";
-import WalletInfo from "@/app/components/WalletInfo";
+//import { eventData } from "@/app/utils/dataMock";
+//import WalletInfo from "@/app/components/WalletInfo";
 import { useEventManagerProgram } from '@/app/utils/solanaProgram';
 import { EventAccount, getEvents } from '@/app/services/get-events.service';
 
@@ -20,7 +20,7 @@ export default function Home() {
 	}
       })
     } catch(err) {
-      console.log("Error getting events");
+      console.log("Error getting events", err);
     }
   }
   

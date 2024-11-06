@@ -1,13 +1,14 @@
+import { BN, Program } from "@coral-xyz/anchor";
 import { acceptedMint } from "@/app/utils/solanaProgram";
-import { BN } from "bn.js";
 import { allPdas } from "@/app/utils/find-pdas";
 import { PublicKey } from "@solana/web3.js";
+import { EventManager } from "@/app//utils/idl/idl-event-manager";
 
 interface createEventInterface {
   name: string,
   price: number,
   publicKey: PublicKey | null,
-  program: any
+  program: Program<EventManager>
 }
 
 export async function createEvent({ name, price, publicKey, program }: createEventInterface) {
@@ -27,7 +28,7 @@ export async function createEvent({ name, price, publicKey, program }: createEve
       .accounts({
         event: eventPublicKey,
         acceptedMint: acceptedMint, 
-        eventMint: eventMintPublicKey, // sponsorship token
+        eventMint: eventMintPublicKey,
         treasuryVault: treasuryVaultPublicKey,
         gainVault: gainVaultPdaPublicKey,
         authority: publicKey, 

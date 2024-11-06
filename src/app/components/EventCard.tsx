@@ -43,7 +43,7 @@ export default function EventCard(event: EventDataProp) {
 		    
 		    <Image
 		      className="mx-1"
-		      src="/Solana.png" 
+		      src="/UsdcLogo.png" 
 		      width={20} 
 		      height={20} 
 		      alt="solana logo"

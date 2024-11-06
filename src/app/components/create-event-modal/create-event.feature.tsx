@@ -107,7 +107,6 @@ export default function CreateEventFeature() {
       </button>
 
       <CreateEventModal
-        id="createEventModal"
         loading={isLoading}
 	onClose={handleCloseModal}
         onSubmit={onSubmit}

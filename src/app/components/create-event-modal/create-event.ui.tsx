@@ -45,7 +45,7 @@ export default function CreateEventModal({
       id="createEventModal"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
-      tabIndex="-1"
+      tabIndex={-1}
       aria-labelledby="createEventModalLabel"
       aria-hidden="true"
     >

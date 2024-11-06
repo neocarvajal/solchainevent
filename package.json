@@ -24,6 +24,7 @@
     "sweetalert2": "^11.14.5"
   },
   "devDependencies": {
+    "@types/bn.js": "^5.1.6",
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^20",
     "@types/react": "^18",
