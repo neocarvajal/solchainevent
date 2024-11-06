@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -24,7 +26,7 @@ export default function Home() {
   
   useEffect(() => {
     getAllEvents();
-  }, [getAllEvents]);
+  }, []);
   
   return (
     <>
@@ -32,7 +34,7 @@ export default function Home() {
 	events.length === 0 ? 
 	(
 	  <div className="container">
-	    <div className="position-relative text-center text-muted bg-body border border-dashed rounded-5">
+	    <div className="position-relative text-center text-muted bg-body border border-dashed rounded-5 mt-5">
 	      <h1 className="text-body-emphasis">¡Lo sentimos! No hay eventos disponibles. </h1>
 	      <p className="col-lg-6 mx-auto mb-4">
 		Sé el primero en crear un evento en Solana:

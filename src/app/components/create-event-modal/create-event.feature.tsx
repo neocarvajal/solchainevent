@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import CreateEventModal, { EventFormInputs } from './create-event.ui';
 import { createEvent } from '@/app/services/create-event.service';
@@ -17,24 +17,24 @@ export default function CreateEventFeature() {
   const program = useEventManagerProgram();
   const router = useRouter();
   
-  let modalInstance: Modal | null = null;
-  
+  const modalInstanceRef = useRef<Modal | null>(null);
+    
    useEffect(() => {
     const modalElement = document.getElementById('createEventModal');
     if (modalElement) {
-      modalInstance = new Modal(modalElement); 
+      modalInstanceRef.current = new Modal(modalElement); 
     }
   }, []);
   
-  const handleOpenModal = () => {
-    if (modalInstance) {
-      modalInstance.show();
+ const handleOpenModal = () => {
+    if (modalInstanceRef.current) {
+      modalInstanceRef.current.show();
     }
   };
 
   const handleCloseModal = () => {
-    if (modalInstance) {
-      modalInstance.hide();
+    if (modalInstanceRef.current) {
+      modalInstanceRef.current.hide();
     }
   };
 
