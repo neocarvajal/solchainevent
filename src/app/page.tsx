@@ -24,7 +24,7 @@ export default function Home() {
   
   useEffect(() => {
     getAllEvents();
-  }, [events]);
+  }, [getAllEvents]);
   
   return (
     <>
