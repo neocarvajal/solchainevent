@@ -13,7 +13,7 @@ interface createEventInterface {
 export async function createEvent({ name, price, publicKey, program }: createEventInterface) {
   if (!publicKey) return;
   const eventId = Date.now().toString();
-
+  
   try {
     const {
       eventMintPublicKey,
@@ -38,7 +38,9 @@ export async function createEvent({ name, price, publicKey, program }: createEve
 
     const eventAccount = await program.account.event.fetch(eventPublicKey);
     console.log("Event info: ", eventAccount);
+    return true;
   } catch (e) {
     console.log("EL ERROR: ", e);
+    return false;
   }
 };

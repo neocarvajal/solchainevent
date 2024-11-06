@@ -11,7 +11,7 @@ export default function NavBar() {
   const { publicKey } = useWallet();
 
   return (
-    <header className="p-3 text-bg-dark">
+    <header className="p-3 text-bg-dark position-sticky top-0" style={{ zIndex: '1000' }}>
       <div className="container">
         {publicKey ? (
           <nav className="d-flex flex-wrap align-items-center justify-content-between">

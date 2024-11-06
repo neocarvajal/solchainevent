@@ -1,19 +1,41 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import EventCard from "@/app/components/EventCard";
 import { eventData } from "@/app/utils/dataMock";
 import WalletInfo from "@/app/components/WalletInfo";
+import { useEventManagerProgram } from '@/app/utils/solanaProgram';
+import { EventAccount, getEvents } from '@/app/services/get-events.service';
 
 export default function Home() {
-
+  
+  const program = useEventManagerProgram();
+  const [events, setEvents] = useState<EventAccount[]>([]);
+  
+  const getAllEvents = async () => {
+    try {
+      getEvents(program).then((events) => {
+	if(events) {
+	  setEvents(events);
+	}
+      })
+    } catch(err) {
+      console.log("Error getting events");
+    }
+  }
+  
+  useEffect(() => {
+    getAllEvents();
+  }, []);
+  
   return (
     <>
-      <WalletInfo />
+      {/* <WalletInfo /> */}
       {
-	eventData.length === 0 ? 
+	events.length === 0 ? 
 	(
-	  <div className="container my-5">
-	    <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
+	  <div className="container">
+	    <div className="position-relative text-center text-muted bg-body border border-dashed rounded-5">
 	      <h1 className="text-body-emphasis">¡Lo sentimos! No hay eventos disponibles. </h1>
 	      <p className="col-lg-6 mx-auto mb-4">
 		Sé el primero en crear un evento en Solana:
@@ -34,31 +56,28 @@ export default function Home() {
 	(
 	<>
 	  <div className="container my-5">
-	    <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
+	    <div className="position-relative text-center text-muted bg-body border border-dashed rounded-5">
 	      <h1 className="text-body-emphasis">¡No te pierdas los últimos eventos!</h1>
 	      <p className="col-lg-6 mx-auto mb-4">
 		Forma parte de la gran comunidad de Solana
 	      </p>
 	    </div>
-	  </div>
-	  
-	  <div className="container mt-5">
-	    <div className="row">
-	    {eventData.map((event, key) => (
-		 <EventCard 
-		    key={key}
-		    title={event.title} 
-		    ticket_price={event.ticket_price} 
-		    token_price={event.token_price}
-		    img_event={event.img_event}
+
+	    <div className="container mt-5">
+	      <div className="row gy-3">
+		{events.map((event, key) => (
+		  <EventCard 
+		    key={key} 
+		    publicKey={event.publicKey} 
+		    account={event.account} 
 		  />
-	    ))}
+		))}
+	      </div>
 	    </div>
 	  </div>
 	</>
 	)
       }
-      
     </>
   );
 }

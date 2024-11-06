@@ -23,5 +23,6 @@ export function useEventManagerProgram() {
     const provider =  new AnchorProvider(connection, wallet as AnchorWallet, {
         commitment: "confirmed",
     });
+    
     return new Program(EventManagerIDL as EventManager, EVENT_MANAGER_PROGRAM_ID, provider);
 }

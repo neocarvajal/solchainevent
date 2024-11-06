@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Event as EventDataProp } from '@/app/utils/dataMock';
+import { EventAccount as EventDataProp} from '@/app/services/get-events.service';
 
 export default function EventCard(event: EventDataProp) {
   
@@ -17,7 +17,7 @@ export default function EventCard(event: EventDataProp) {
     <div className="col-md-4">
       <div className="card bg-body-secondary rounded-4">
 	<div className="card-body">
-	  <h5 className="card-title text-center">{event.title} <Image src={event.img_event} width={25} height={25} alt="Heavy Duty Logo" /></h5>
+	  <h5 className="card-title text-center">{event.account.name}</h5>
 	  <div className="container">
 	    <div className="row">
 	      <div className="col">
@@ -39,7 +39,7 @@ export default function EventCard(event: EventDataProp) {
 		>
 		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Comprar Entrada</p> 
 		  <p className="fw-bold d-flex align-items-center justify-content-center">
-		    {event.ticket_price}
+		    {event.account.ticketPrice.toNumber()}
 		    
 		    <Image
 		      className="mx-1"
@@ -73,7 +73,7 @@ export default function EventCard(event: EventDataProp) {
 		>
 		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Colaborar Ahora </p> 
 		  <p className="fw-bold d-flex align-items-center justify-content-center">
-		    {event.token_price}
+		    1
 		     <Image
 		      className="mx-1"
 		      src="/Solana.png" 
