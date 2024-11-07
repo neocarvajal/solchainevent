@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { CollabData as CollabCardProp } from "@/app/utils/dataMock";
+import { CollabData as CollabCardProp } from "@/utils/dataMock";
 
 export default function CollabCard(collab: CollabCardProp) {
   

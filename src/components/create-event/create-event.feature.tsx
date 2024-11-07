@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import CreateEventModal, { EventFormInputs } from './create-event.ui';
-import { createEvent } from '@/app/services/create-event.service';
+import CreateEventModal, { EventFormInputs } from '@/components/create-event/create-event.ui';
+import { createEvent } from '@/services/create-event.service';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useEventManagerProgram } from "@/app/utils/solanaProgram";
+import { useRouter } from 'next/navigation';
+import { useEventManagerProgram } from "@/utils/solanaProgram";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Modal } from 'bootstrap';
@@ -49,7 +49,7 @@ export default function CreateEventFeature() {
 	  text: "Tu evento está registrado en la Blockchain",
 	  icon: "success"
 	}).then(() => {
-	  router.push('/');
+	    router.push('/');
 	});
       } else{
 	 handleCloseModal();
@@ -58,10 +58,6 @@ export default function CreateEventFeature() {
 	    text: 'Transacción Rechazada',
 	    icon: 'error',
 	    confirmButtonText: 'Ok!'
-	  }).then((result) => {
-	    if (result.isConfirmed) {
-	      router.push('/');
-	    }
 	  });
       }
     } catch (e) {
@@ -72,10 +68,6 @@ export default function CreateEventFeature() {
         text: 'Error al crear evento',
         icon: 'error',
         confirmButtonText: 'Ok!'
-      }).then((result) => {
-	if (result.isConfirmed) {
-	    router.push('/');
-	  }
       });
     } finally {
       setIsLoading(false);

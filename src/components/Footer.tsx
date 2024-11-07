@@ -19,9 +19,9 @@ export default function Footer() {
 	</div>
 
 	<ul className="nav mx-4 col-md-4 justify-content-end list-unstyled d-flex">
-	  <li className="ms-3"><Link className="text-white" href="#">Twitter</Link></li>
-	  <li className="ms-3"><Link className="text-white" href="#">Instagram</Link></li>
-	  <li className="ms-3"><Link className="text-white" href="#">Github</Link></li>
+	  <li className="ms-3"><Link className="text-white" href="https://x.com/solchainevent" target="_blank">Twitter</Link></li>
+	  <li className="ms-3"><Link className="text-white" href="https://instagram.com/solchainevent" target="_blank">Instagram</Link></li>
+	  <li className="ms-3"><Link className="text-white" href="https://github.com/solchainevent" target="_blank">Github</Link></li>
 	</ul>
       </div>
     </footer>

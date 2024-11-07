@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useMemo } from 'react';
 import { Connection, clusterApiUrl } from '@solana/web3.js';
-import { Cluster } from '@/app/utils/dataMock';
+import { Cluster } from '@/utils/dataMock';
 
 const SolanaConnectionContext = createContext<Connection | null>(null);
 

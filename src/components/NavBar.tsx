@@ -29,7 +29,7 @@ export default function NavBar() {
           <nav className="d-flex flex-wrap align-items-center justify-content-between">
             <Link href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
               <Image src="/NewBuilder.png" width="30" height="30" alt="Heavy Duty Camp" />
-              <span className="px-3">Reto 4 |</span>
+              <span className="px-3">Reto 5 | Conectando a la Blockchain</span>
             </Link>
             <WalletMultiButton style={{ background: 'linear-gradient(180.65deg,#c766ef,#7928d2 51.04%,#2b0c52)', border: 'none', color: 'white' }} />
           </nav>

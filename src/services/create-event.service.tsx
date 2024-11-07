@@ -1,8 +1,8 @@
 import { BN, Program } from "@coral-xyz/anchor";
-import { acceptedMint } from "@/app/utils/solanaProgram";
-import { allPdas } from "@/app/utils/find-pdas";
+import { acceptedMint } from "@/utils/solanaProgram";
+import { allPdas } from "@/utils/find-pdas";
 import { PublicKey } from "@solana/web3.js";
-import { EventManager } from "@/app//utils/idl/idl-event-manager";
+import { EventManager } from "@/utils/idl/idl-event-manager";
 
 interface createEventInterface {
   name: string,

@@ -1,11 +1,9 @@
-/* eslint-disable */
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import EventCard from "@/app/components/EventCard";
-import { useEventManagerProgram } from '@/app/utils/solanaProgram';
-import { EventAccount, getEvents } from '@/app/services/get-events.service';
+import EventCard from "@/components/EventCard";
+import { useEventManagerProgram } from '@/utils/solanaProgram';
+import { EventAccount, getEvents } from '@/services/get-events.service';
 
 export default function Home() {
   
@@ -40,10 +38,17 @@ export default function Home() {
 		Sé el primero en crear un evento en Solana:
 	      </p>
 	      <button 
-	       className="btn btn-primary"
+	       className="btn btn-primary mb-2"
 		style={{
 		  background: 'linear-gradient(90deg,#c766ef,#7928d2 51.04%,#2b0c52)',
 		  border: 'none',
+		  transition: 'transform 0.5s',
+		}}
+		onMouseEnter={(e) => {
+		  e.currentTarget.style.transform = 'scale(1.1)';
+		}}
+		onMouseLeave={(e) => {
+		  e.currentTarget.style.transform = 'scale(1)';
 		}}
 	      >
 		Crear Evento

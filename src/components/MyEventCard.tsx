@@ -1,27 +1,32 @@
 'use client';
 
+import { MyEventData as MyEventCardProp } from "@/utils/dataMock";
 import Image from 'next/image';
-import { EventAccount as EventDataProp} from '@/app/services/get-events.service';
 
-export default function EventCard(event: EventDataProp) {
+export default function MyEventCard(event: MyEventCardProp) {
   
-  const handleCollab = () => {
+  const handleCloseEvent = () => {
       alert("Dentro de poco integraremos esta función");
   }
   
-  const handleBuy = () => {
+  const handleClaim = () => {
       alert("Dentro de poco integraremos esta función");
   }
-    
-  return(
+  
+  return (
     <div className="col-md-4">
       <div className="card bg-body-secondary rounded-4">
 	<div className="card-body">
-	  <h5 className="card-title text-center">{event.account.name}</h5>
+	  <h5 className="card-title text-center">{event.title} <Image src={event.img_event} width={25} height={25} alt="Latam Fest Logo" /></h5>
 	  <div className="container">
 	    <div className="row">
 	      <div className="col">
-		<div className="bg-body-tertiary rounded-2"></div>
+		<div className="bg-body-tertiary rounded-2">
+		  <h6 className="text-center">Boveda del Evento</h6>
+		  <p>Precio Token: {event.token_price}</p>
+		  <p>Colaboradores: {event.collaborators}</p>
+		  <p>Total: {event.event_vault_total}</p>
+		</div>
 		<button 
 		  className="btn btn-success form-control"
 		  style={{
@@ -35,29 +40,22 @@ export default function EventCard(event: EventDataProp) {
 		  onMouseLeave={(e) => {
 		    e.currentTarget.style.transform = 'scale(1)';
 		  }}
-		  onClick={handleBuy}
+		  onClick={handleClaim}
+		  disabled={event.closed}
 		>
-		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Comprar Entrada</p> 
-		  <p className="fw-bold d-flex align-items-center justify-content-center">
-		    {event.account.ticketPrice.toNumber()}
-		    
-		    <Image
-		      className="mx-1"
-		      src="/UsdcLogo.png" 
-		      width={20} 
-		      height={20} 
-		      alt="solana logo"
-		    />
-		  </p>
-		  
+		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Retirar Fondos</p> 
 		</button>
 	      </div>
 	      <div className="col">
 		<div className="bg-body-tertiary rounded-2">
-		  
+		  <h6 className="text-center">Boveda Ganancias</h6>
+		  <p>Precio Ticket: {event.ticket_price}</p>
+		  <p>Total Vendidos: {event.tickets_sold}</p>
+		  <p>Total: {event.gain_vault_total}</p>
 		</div>
 		<button
 		  className="btn btn-primary form-control"
+		  type="submit"
 		  style={{
 		    background: 'linear-gradient(180.65deg,#c766ef,#7928d2 51.04%,#2b0c52)',
 		    border: 'none',
@@ -69,19 +67,9 @@ export default function EventCard(event: EventDataProp) {
 		  onMouseLeave={(e) => {
 		    e.currentTarget.style.transform = 'scale(1)';
 		  }}
-		  onClick={handleCollab}
+		  onClick={handleCloseEvent}
 		>
-		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Colaborar Ahora </p> 
-		  <p className="fw-bold d-flex align-items-center justify-content-center">
-		    1
-		     <Image
-		      className="mx-1"
-		      src="/UsdcLogo.png" 
-		      width={20} 
-		      height={20} 
-		      alt="solana logo"
-		    />
-		  </p>
+		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Cerrar Evento </p> 
 		</button>
 	      </div>
 	    </div>

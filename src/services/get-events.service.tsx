@@ -1,6 +1,6 @@
 import { BN, Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
-import { EventManager } from "../utils/idl/idl-event-manager";
+import { EventManager } from "@/utils/idl/idl-event-manager";
 
 export interface EventAccountInfo {
     id: string;

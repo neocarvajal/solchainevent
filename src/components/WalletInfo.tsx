@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSolanaConnection } from '@/app/utils/SolanaConnectionProvider';
+import { useSolanaConnection } from '@/utils/SolanaConnectionProvider';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 export default function WalletInfo() {

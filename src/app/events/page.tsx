@@ -1,21 +1,18 @@
-/* eslint-disable */
-
 'use client';
 
 import React from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useRouter } from 'next/navigation';
-import MyEventCard from '@/app/components/MyEventCard';
-import { myEventData } from '@/app/utils/dataMock';
-import CreateEventFeature from '@/app/components/create-event-modal/create-event.feature';
+import { redirect } from 'next/navigation';
+import MyEventCard from '@/components/MyEventCard';
+import { myEventData } from '@/utils/dataMock';
+import CreateEventFeature from '@/components/create-event/create-event.feature';
 
 export default function Events() {
   
   const { publicKey } = useWallet();
-  const router = useRouter();
   
-  if (!publicKey) {
-    router.push('/');
+  if(!publicKey){
+    return redirect('/')
   }
   
   return(

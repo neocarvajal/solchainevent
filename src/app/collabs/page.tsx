@@ -3,9 +3,8 @@
 import Link from 'next/link';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { redirect } from 'next/navigation';
-import CollabCard from '@/app/components/CollabCard';
-import { collabData } from "@/app/utils/dataMock";
-
+import CollabCard from '@/components/CollabCard';
+import { collabData } from "@/utils/dataMock";
 
 export default function Collabs() {
   
