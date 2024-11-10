@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 export interface EventFormInputs {
@@ -8,10 +9,12 @@ export interface EventFormInputs {
 }
 
 export default function CreateEventModal({
+  modalRef,
   loading,
   onClose,
   onSubmit
 }: {
+  modalRef: React.RefObject<HTMLDivElement>;
   loading: boolean;
   onClose: () => void;
   onSubmit: (data: EventFormInputs) => void;
@@ -48,6 +51,7 @@ export default function CreateEventModal({
       tabIndex={-1}
       aria-labelledby="createEventModalLabel"
       aria-hidden="true"
+      ref={modalRef}
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">

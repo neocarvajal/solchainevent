@@ -18,12 +18,14 @@ export default function CreateEventFeature() {
   const router = useRouter();
   
   const modalInstanceRef = useRef<Modal | null>(null);
-    
-   useEffect(() => {
-    const modalElement = document.getElementById('createEventModal');
-    if (modalElement) {
-      modalInstanceRef.current = new Modal(modalElement); 
-    }
+  const modalRef = useRef(null);
+  
+  useEffect(() => { 
+    if (typeof window !== 'undefined') { 
+      if (modalRef.current) { 
+	modalInstanceRef.current = new Modal(modalRef.current); 
+      } 
+    } 
   }, []);
   
  const handleOpenModal = () => {
@@ -99,6 +101,7 @@ export default function CreateEventFeature() {
       </button>
 
       <CreateEventModal
+	modalRef={modalRef}
         loading={isLoading}
 	onClose={handleCloseModal}
         onSubmit={onSubmit}
