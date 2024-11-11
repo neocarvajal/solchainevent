@@ -38,7 +38,6 @@ export default function Events() {
   
   return(
     <>
-    
       { events.length == 0 ? (
 	<div className="container my-5">
 	  <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
@@ -50,17 +49,29 @@ export default function Events() {
 	  </div>
 	</div>
 	) : (
-	 <div className="container mt-5">
-	  <div className="row">
-	    {events.map((event, key) => (
-	       <MyEventCard
-                key={key}
-                publicKey={event.publicKey}
-                account={event.account}
-              />
-	    ))}
+	<>
+	  <div className="container my-5">
+	    <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
+	      <h1 className="text-body-emphasis">Tus eventos en Solana</h1>
+	      <p className="col-lg-6 mx-auto mb-4">
+		¿Nuevo plan? ¡Hazlo realidad!
+	      </p>
+	      <CreateEventFeature />
+	    </div>
 	  </div>
-	</div>
+	  
+	   <div className="container mt-5">
+	    <div className="row">
+	      {events.map((event, key) => (
+		 <MyEventCard
+		  key={key}
+		  publicKey={event.publicKey}
+		  account={event.account}
+		/>
+	      ))}
+	    </div>
+	  </div>
+	</>
       )}
     </>
   );

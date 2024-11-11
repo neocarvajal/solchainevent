@@ -5,6 +5,7 @@ import { CloseEventFeature } from "@/components/close-event/close-event.feature"
 import { EventAccount } from "@/services/get-events.service";
 import Image from 'next/image';
 
+
 export default function MyEventCard(event: EventAccount) {
   
   const handleCloseEvent = () => {
@@ -55,24 +56,14 @@ export default function MyEventCard(event: EventAccount) {
 		  <p>Total Vendidos: {event.account.ticketsSold.toNumber().toFixed(0)}</p>
 		  <p>Total: {(event.account.gainVaultTotal.toNumber()/DECIMALS_PER_USDC).toFixed(0)}</p>
 		</div>
-		<button
-		  className="btn btn-primary form-control"
-		  type="submit"
-		  style={{
-		    background: 'linear-gradient(180.65deg,#c766ef,#7928d2 51.04%,#2b0c52)',
-		    border: 'none',
-		    transition: 'transform 0.5s',
-		  }}
-		  onMouseEnter={(e) => {
-		    e.currentTarget.style.transform = 'scale(1.1)';
-		  }}
-		  onMouseLeave={(e) => {
-		    e.currentTarget.style.transform = 'scale(1)';
-		  }}
-		  onClick={handleCloseEvent}
-		>
-		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Cerrar Evento </p> 
-		</button>
+		{
+		  event.account.active && (
+		    <CloseEventFeature
+		      publicKey={event.publicKey}
+		      account={event.account}
+		    />
+		  )
+		}
 	      </div>
 	    </div>
 	  </div>

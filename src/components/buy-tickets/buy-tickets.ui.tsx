@@ -1,10 +1,10 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-export interface SponsorFormInputs {
+export interface BuyFormInputs {
   quantity: number;
 }
 
-export default function SponsorEventModal({
+export default function BuyTicketsModal({
   eventName,
   modalRef,
   loading,
@@ -15,7 +15,7 @@ export default function SponsorEventModal({
   modalRef: React.RefObject<HTMLDivElement>;
   loading: boolean;
   onClose: () => void;
-  onSubmit: (data: SponsorFormInputs) => void;
+  onSubmit: (data: BuyFormInputs) => void;
 }) {
   
   const {
@@ -23,13 +23,13 @@ export default function SponsorEventModal({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<SponsorFormInputs>({
+  } = useForm<BuyFormInputs>({
     defaultValues: {
       quantity: 0,
     },
   });
 
-  const handleFormSubmit: SubmitHandler<EventFormInputs> = async (data) => {
+  const handleFormSubmit: SubmitHandler<BuyFormInputs> = async (data) => {
     try {
       console.log("Cantidad de Tokens: ", data);
       onSubmit(data);
@@ -42,19 +42,19 @@ export default function SponsorEventModal({
   return (
     <div
       className="modal fade"
-      id="collabEventModal"
+      id="buyTicketsModal"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabIndex={-1}
-      aria-labelledby="collabEventModalLabel"
+      aria-labelledby="buyTicketsModalLabel"
       aria-hidden="true"
       ref={modalRef}
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="collabEventModalLabel">
-              Comprar Tokens de {eventName}
+            <h1 className="modal-title fs-5" id="buyTicketsModalLabel">
+              Comprar Tickets de {eventName}
             </h1>
             <button
               type="button"
@@ -65,7 +65,7 @@ export default function SponsorEventModal({
           </div>
           <div className="modal-body">
             <form onSubmit={handleSubmit(handleFormSubmit)}>
-              <label>Tokens</label>
+              <label>Tickets</label>
               <input 
 		  {...register("quantity", {
 		  required: "El monto es requerido",
@@ -82,7 +82,6 @@ export default function SponsorEventModal({
                 type="number"
 		step={1}
                 className={`form-control ${ errors.quantity ? "border-red-500" : "border-gray-300"}`}
-                placeholder="Ingresa el monto"
               />
               {errors.quantity && (
                 <p className="mt-1 text-sm text-danger">{errors.quantity.message}</p>
@@ -103,7 +102,7 @@ export default function SponsorEventModal({
                   className="btn btn-success"
                   disabled={loading}
                 >
-                  {loading ? "Colaborando..." : "Comprar tokens"}
+                  {loading ? "Comprando..." : "Comprar Tickets"}
                 </button>
               </div>
             </form>
