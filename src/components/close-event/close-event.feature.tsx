@@ -1,27 +1,56 @@
+'use client';
+
 import { useState } from 'react';
 import CloseEventModal from '@/components/close-event/close-event.ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEventManagerProgram } from "@/utils/solanaProgram";
 import { EventAccount } from '@/services/get-events.service';
 import { closeEvent } from '@/services/close-event.service';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 export function CloseEventFeature(event: EventAccount) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {publicKey} = useWallet()
   const program = useEventManagerProgram();
   const eventPublicKey = event.publicKey;
+  const router = useRouter();
 
   const onSubmit = async () => {
-    setisLoading(!isLoading);
+    setIsLoading(true);
     try {
-        console.log(event)
-        await closeEvent({ program, publicKey, eventPublicKey })
+        const closeResult = await closeEvent({ program, publicKey, eventPublicKey })
+	if (closeResult) {
+	  setIsModalOpen(false);
+	  Swal.fire({
+	    title: "Evento cerrado",
+	    text: "El evento ha sido cerrado con éxito.",
+	    icon: "success",
+	    confirmButtonColor: "#28a745"
+	  }).then((result) => {
+	      router.push('/');
+	  });
+	} else {
+	  setIsModalOpen(false);
+	  Swal.fire({
+	    title: 'Error!',
+	    text: 'Transacción Rechazada',
+	    icon: 'error',
+	    confirmButtonText: 'Ok!'
+	  });
+	}
     } catch (e) {
-      console.error(e)
+      console.error("Error al cerrar el evento:", e);
+      setIsModalOpen(false);
+      Swal.fire({
+	title: "Error",
+	text: "Hubo un problema al cerrar el evento. Inténtalo nuevamente.",
+	icon: "error",
+	confirmButtonColor: "#d33"
+      });
     } finally {
-      setisLoading(!isLoading);
-      setIsModalOpen(!isModalOpen);
+      setIsLoading(false);
     }
   }
 
@@ -43,7 +72,9 @@ export function CloseEventFeature(event: EventAccount) {
 	  }}
 	  onClick={() => setIsModalOpen(true)}
       >
-	 <p className="fw-bold d-flex align-items-center justify-content-center my-2">Cerrar Evento </p> 
+	 <p className="fw-bold d-flex align-items-center justify-content-center my-2"> 
+	   {isLoading ? "Cerrando..." : "Cerrar Evento"}
+	 </p>
       </button>
 	<CloseEventModal
 	  isOpen={isModalOpen}

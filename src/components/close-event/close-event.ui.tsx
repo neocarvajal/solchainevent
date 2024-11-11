@@ -9,35 +9,32 @@ export default function CloseEventModal({
   isOpen: boolean;
   loading: boolean;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void>;
 }) {
   
-  const handleCloseEvent = async () => {
+  const handleCloseEvent = () => {
     try {
-      const result = await Swal.fire({
+      Swal.fire({
         title: "¿Estás seguro de que quieres cerrar el evento?",
         text: "¡No podrás revertir esta acción!",
         icon: "warning",
         showCancelButton: true,
-	reverseButtons: true,
+        reverseButtons: true,
         confirmButtonColor: "#28a745",
         cancelButtonColor: "#d33",
         confirmButtonText: "Sí, cerrar evento",
         cancelButtonText: "Cancelar"
+      }).then((result) => {
+	  if (result.isConfirmed) {
+	    console.log("Cerrando en el evento");
+	    onSubmit();
+	  } else{
+	     onClose();
+	  }
       });
 
-      if (result.isConfirmed) {
-        onSubmit();
-        Swal.fire({
-          title: "Evento cerrado",
-          text: "El evento ha sido cerrado con éxito.",
-          icon: "success"
-        });
-      } else {
-        onClose();
-      }
-    } catch (error) {
-      console.error("Error closing the event:", error);
+    } catch(err) {
+      console.error("Error cerrando el evento :", error);
     }
   };
 

@@ -22,8 +22,9 @@ export async function closeEvent({publicKey, program, eventPublicKey}: CloseEven
         .rpc();
 
     console.log(`TxID: https://solana.fm/tx/${tx}?cluster=devnet-solana`);
-
+    return true;
   } catch (e) {
     console.log("EL ERROR: ", e);
+    return false;
   }
 };

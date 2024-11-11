@@ -19,7 +19,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Reto 5",
+  title: "Solchain Event",
   description: "Heavy Duty Camp",
   icons: {
     icon: '/NewBuilder.png',

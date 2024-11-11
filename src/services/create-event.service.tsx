@@ -22,7 +22,7 @@ export async function createEvent({ name, price, publicKey, program }: createEve
       gainVaultPdaPublicKey,
       treasuryVaultPublicKey,
     } = allPdas({ eventId, programId: program.programId, publicKey });
-
+    
     const tx = await program.methods
       .createEvent(eventId, name, new BN(price))
       .accounts({
