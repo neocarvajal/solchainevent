@@ -31,6 +31,15 @@ export default function BuyTicketsFeature(event: EventAccount) {
   }, []);
   
  const handleOpenModal = () => {
+   if(!publicKey){
+      Swal.fire({
+	title: 'Error!',
+	text: 'Debes Conectarte con tu Wallet',
+	icon: 'error',
+	confirmButtonText: 'Ok!'
+      });
+    return null;
+  }
     if (modalInstanceRef.current) {
       modalInstanceRef.current.show();
     }

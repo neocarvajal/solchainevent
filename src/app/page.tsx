@@ -10,7 +10,7 @@ export default function Home() {
   
   const program = useEventManagerProgram();
   const [events, setEvents] = useState<EventAccount[]>([]);
-  
+    
   const getAllEvents = async () => {
     try {
       getEvents(program).then((events) => {
