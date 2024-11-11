@@ -1,14 +1,12 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
-import { EventAccount as EventDataProp} from '@/services/get-events.service';
+import { EventAccount } from '@/services/get-events.service';
+import SponsorEventFeature from '@/components/sponsor-event/sponsor-event.feature';
 
-export default function EventCard(event: EventDataProp) {
-  
-  const handleCollab = () => {
-      alert("Dentro de poco integraremos esta función");
-  }
-  
+export default function EventCard(event: EventAccount) {
+
   const handleBuy = () => {
       alert("Dentro de poco integraremos esta función");
   }
@@ -56,33 +54,13 @@ export default function EventCard(event: EventDataProp) {
 		<div className="bg-body-tertiary rounded-2">
 		  
 		</div>
-		<button
-		  className="btn btn-primary form-control"
-		  style={{
-		    background: 'linear-gradient(180.65deg,#c766ef,#7928d2 51.04%,#2b0c52)',
-		    border: 'none',
-		    transition: 'transform 0.5s',
-		  }}
-		  onMouseEnter={(e) => {
-		    e.currentTarget.style.transform = 'scale(1.1)';
-		  }}
-		  onMouseLeave={(e) => {
-		    e.currentTarget.style.transform = 'scale(1)';
-		  }}
-		  onClick={handleCollab}
-		>
-		  <p className="fw-bold d-flex align-items-center justify-content-center my-2">Colaborar Ahora </p> 
-		  <p className="fw-bold d-flex align-items-center justify-content-center">
-		    1
-		     <Image
-		      className="mx-1"
-		      src="/UsdcLogo.png" 
-		      width={20} 
-		      height={20} 
-		      alt="solana logo"
-		    />
-		  </p>
-		</button>
+		
+		<SponsorEventFeature
+		  publicKey={event.publicKey}
+		  account={event.account}
+		  name={event.account.name} 
+		/>
+	  
 	      </div>
 	    </div>
 	  </div>

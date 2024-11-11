@@ -95,6 +95,11 @@ export type EventManager = {
           "isSigner": false
         },
         {
+          "name": "acceptedMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
@@ -143,6 +148,11 @@ export type EventManager = {
         {
           "name": "gainVault",
           "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "acceptedMint",
+          "isMut": false,
           "isSigner": false
         },
         {
@@ -279,6 +289,11 @@ export type EventManager = {
           "isSigner": false
         },
         {
+          "name": "acceptedMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
@@ -326,6 +341,18 @@ export type EventManager = {
           },
           {
             "name": "sponsors",
+            "type": "u64"
+          },
+          {
+            "name": "ticketsSold",
+            "type": "u64"
+          },
+          {
+            "name": "treasuryVaultTotal",
+            "type": "u64"
+          },
+          {
+            "name": "gainVaultTotal",
             "type": "u64"
           },
           {
@@ -462,6 +489,11 @@ export const IDL: EventManager = {
           "isSigner": false
         },
         {
+          "name": "acceptedMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
@@ -510,6 +542,11 @@ export const IDL: EventManager = {
         {
           "name": "gainVault",
           "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "acceptedMint",
+          "isMut": false,
           "isSigner": false
         },
         {
@@ -646,6 +683,11 @@ export const IDL: EventManager = {
           "isSigner": false
         },
         {
+          "name": "acceptedMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
@@ -693,6 +735,18 @@ export const IDL: EventManager = {
           },
           {
             "name": "sponsors",
+            "type": "u64"
+          },
+          {
+            "name": "ticketsSold",
+            "type": "u64"
+          },
+          {
+            "name": "treasuryVaultTotal",
+            "type": "u64"
+          },
+          {
+            "name": "gainVaultTotal",
             "type": "u64"
           },
           {

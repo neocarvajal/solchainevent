@@ -1,23 +1,44 @@
 'use client';
 
 import Link from 'next/link';
-import { useWallet } from '@solana/wallet-adapter-react';
 import { redirect } from 'next/navigation';
 import CollabCard from '@/components/CollabCard';
-import { collabData } from "@/utils/dataMock";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useEventManagerProgram } from "@/utils/solanaProgram";
+import { useEffect, useState } from "react";
+import { getSponsoredEvents, SponsoredEvent } from "@/services/get-sponsored-events.service";
 
 export default function Collabs() {
-  
+  const program = useEventManagerProgram();
+  const { connection } = useConnection();
+  const [sponsored, setSponsored] = useState<SponsoredEvent[]>([]);
   const { publicKey } = useWallet();
-  
+    
   if(!publicKey) {
     redirect('/');
   }
   
+  const getSponsored = async () => {
+    try {
+      getSponsoredEvents(program, connection, publicKey).then((sponsored) => {
+	if(sponsored){
+	  setSponsored(sponsored)
+	}
+      })
+    } catch (error) {
+      console.error("Error obteniendo eventos:", error);
+    }
+  };
+
+  useEffect(() => {
+    getSponsored()
+  }, []
+  )
+  
   return (
   <>
     {
-      collabData.length == 0 ? (
+      sponsored.length == 0 ? (
 	<div className="container my-5">
 	  <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
 	    <h1 className="text-body-emphasis">Parece que aún no has colaborado con ningún evento</h1>
@@ -39,13 +60,11 @@ export default function Collabs() {
       ) : (
 	<div className="container mt-5">
 	   <div className="row">
-	      {collabData.map((event, key) => (
+	      {sponsored.map((event, key) => (
 		 <CollabCard 
 		    key={key}
-		    event_title={event.event_title}
-		    tokens_amount={event.tokens_amount}
-		    event_closed={event.event_closed}
-		    img_event={event.img_event}
+		    event={event.event}
+		    tokens={event.tokens}
 		  />
 	      ))}
 	  </div>

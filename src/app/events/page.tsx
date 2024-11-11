@@ -1,50 +1,67 @@
 'use client';
 
-import React from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
+import React, { useEffect, useState } from 'react';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { redirect } from 'next/navigation';
 import MyEventCard from '@/components/MyEventCard';
-import { myEventData } from '@/utils/dataMock';
+import { useEventManagerProgram } from "@/utils/solanaProgram";
 import CreateEventFeature from '@/components/create-event/create-event.feature';
+import { getMyEvents, MyEventInfo } from "@/services/get-my-events.service";
+import { EventAccount } from "@/services/get-events.service";
 
 export default function Events() {
-  
-  const { publicKey } = useWallet();
-  
+  const program = useEventManagerProgram();
+  const { connection } = useConnection();
+  const [events, setEvents] = useState<EventAccount[]>([])
+  const { publicKey } = useWallet()
+    
   if(!publicKey){
     return redirect('/')
   }
   
+  const getEvents = async () => {
+    try {
+      getMyEvents(connection, program, publicKey).then( (events) => {
+        if(events){
+          setEvents(events)
+        }
+      })
+    } catch (error) {
+      console.error("Error obteniendo eventos:", error);
+    }
+  };
+
+  useEffect(() => {
+    getEvents()
+  }, []
+  )
+  
   return(
     <>
-      <div className="container my-5">
-	<div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
-	  <h1 className="text-body-emphasis">Aún no tienes eventos en Solana</h1>
-	  <p className="col-lg-6 mx-auto mb-4">
-	    ¡Crea tu primer evento hoy mismo!
-	  </p>
-	  <CreateEventFeature />
+    
+      { events.length == 0 ? (
+	<div className="container my-5">
+	  <div className="position-relative p-2 text-center text-muted bg-body border border-dashed rounded-5">
+	    <h1 className="text-body-emphasis">Aún no tienes eventos en Solana</h1>
+	    <p className="col-lg-6 mx-auto mb-4">
+	      ¡Crea tu primer evento hoy mismo!
+	    </p>
+	    <CreateEventFeature />
+	  </div>
 	</div>
-      </div>
-
-      <div className="container mt-5">
+	) : (
+	 <div className="container mt-5">
 	  <div className="row">
-	    {myEventData.map((event, key) => (
-	       <MyEventCard 
-		  key={key}
-		  title={event.title} 
-		  ticket_price={event.ticket_price} 
-		  token_price={event.token_price}
-		  closed={event.closed}
-		  img_event={event.img_event}
-		  collaborators={event.collaborators}
-		  tickets_sold={event.tickets_sold}
-		  event_vault_total={event.event_vault_total} 
-		  gain_vault_total={event.gain_vault_total}
-		/>
+	    {events.map((event, key) => (
+	       <MyEventCard
+                key={key}
+                publicKey={event.publicKey}
+                account={event.account}
+              />
 	    ))}
 	  </div>
 	</div>
+      )}
     </>
   );
 }

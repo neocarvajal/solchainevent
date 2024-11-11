@@ -1,9 +1,11 @@
 'use client';
 
-import { MyEventData as MyEventCardProp } from "@/utils/dataMock";
+import { DECIMALS_PER_USDC } from "@/utils/solanaProgram";
+import { CloseEventFeature } from "@/components/close-event/close-event.feature";
+import { EventAccount } from "@/services/get-events.service";
 import Image from 'next/image';
 
-export default function MyEventCard(event: MyEventCardProp) {
+export default function MyEventCard(event: EventAccount) {
   
   const handleCloseEvent = () => {
       alert("Dentro de poco integraremos esta función");
@@ -17,15 +19,15 @@ export default function MyEventCard(event: MyEventCardProp) {
     <div className="col-md-4">
       <div className="card bg-body-secondary rounded-4">
 	<div className="card-body">
-	  <h5 className="card-title text-center">{event.title} <Image src={event.img_event} width={25} height={25} alt="Latam Fest Logo" /></h5>
+	  <h5 className="card-title text-center">{event.account.name}</h5>
 	  <div className="container">
 	    <div className="row">
 	      <div className="col">
 		<div className="bg-body-tertiary rounded-2">
 		  <h6 className="text-center">Boveda del Evento</h6>
-		  <p>Precio Token: {event.token_price}</p>
-		  <p>Colaboradores: {event.collaborators}</p>
-		  <p>Total: {event.event_vault_total}</p>
+		  <p>Precio Token: {1}</p>
+		  <p>Colaboradores: {event.account.sponsors.toNumber().toFixed(0)}</p>
+		  <p>Total: {(event.account.treasuryVaultTotal.toNumber()/DECIMALS_PER_USDC).toFixed(0)}</p>
 		</div>
 		<button 
 		  className="btn btn-success form-control"
@@ -49,9 +51,9 @@ export default function MyEventCard(event: MyEventCardProp) {
 	      <div className="col">
 		<div className="bg-body-tertiary rounded-2">
 		  <h6 className="text-center">Boveda Ganancias</h6>
-		  <p>Precio Ticket: {event.ticket_price}</p>
-		  <p>Total Vendidos: {event.tickets_sold}</p>
-		  <p>Total: {event.gain_vault_total}</p>
+		  <p>Precio Ticket: {event.account.ticketPrice.toNumber().toFixed(0)}</p>
+		  <p>Total Vendidos: {event.account.ticketsSold.toNumber().toFixed(0)}</p>
+		  <p>Total: {(event.account.gainVaultTotal.toNumber()/DECIMALS_PER_USDC).toFixed(0)}</p>
 		</div>
 		<button
 		  className="btn btn-primary form-control"

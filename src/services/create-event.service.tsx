@@ -34,8 +34,8 @@ export async function createEvent({ name, price, publicKey, program }: createEve
         authority: publicKey, 
       })
       .rpc();
-
-    console.log("TxID: ", tx);
+    
+    console.log(`TxID: https://solana.fm/tx/${tx}?cluster=devnet-solana`);
 
     const eventAccount = await program.account.event.fetch(eventPublicKey);
     console.log("Event info: ", eventAccount);

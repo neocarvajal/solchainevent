@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { CollabData as CollabCardProp } from "@/utils/dataMock";
+import { SponsoredEvent as CollaborationCardProp } from "@/services/get-sponsored-events.service"
 
-export default function CollabCard(collab: CollabCardProp) {
+export default function CollabCard(collab: CollaborationCardProp) {
   
    const handleClaim = () => {
       alert("Dentro de poco integraremos esta función");
@@ -13,15 +13,15 @@ export default function CollabCard(collab: CollabCardProp) {
    <div className="col-md-4">
       <div className="card bg-body-secondary rounded-4">
 	<div className="card-body">
-	  <h5 className="card-title text-center">{collab.event_title} <Image src={collab.img_event} width={25} height={25} alt="Latam Fest Logo" /></h5>
+	  <h5 className="card-title text-center">{collab.event.account.name}</h5>
 	  <div className="container">
 	    <div className="row">
 	      <div className="col">
 		<div className="bg-body-tertiary rounded-2 text-center">
-		  <p>Colaboraste con: {collab.tokens_amount} tokens</p>
+		  <p>Colaboraste con: {collab.tokens.toFixed(0)} tokens</p>
 		</div>
 		{
-		  collab.event_closed ? (
+		  !collab.event.account.active ? (
 		      
 		      <button 
 			className="btn btn-success form-control"

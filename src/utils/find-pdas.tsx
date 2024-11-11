@@ -1,4 +1,5 @@
 import { PublicKey } from "@solana/web3.js";
+import { acceptedMint, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@/utils/solanaProgram";
 
 export function eventPda({
   eventId,
@@ -17,7 +18,7 @@ export function eventPda({
     ],
     programId
   );
-  
+
   return eventPublicKey;
 }
 
@@ -32,7 +33,7 @@ export function eventMintPda({
     [Buffer.from("event_mint", "utf-8"), eventPublicKey.toBuffer()],
     programId
   );
-  
+
   return eventMint;
 }
 
@@ -61,7 +62,6 @@ export function gainVaultPda({
     [Buffer.from("gain_vault", "utf-8"), eventPublicKey.toBuffer()],
     programId
   );
-  
   return gainVault;
 }
 
@@ -74,33 +74,49 @@ export function allPdas({
   programId: PublicKey;
   eventId: string;
 }) {
-  
   const eventPublicKey = eventPda({
     eventId,
     programId,
     publicKey,
   });
-  
+
   const eventMintPublicKey = eventMintPda({
     eventPublicKey,
     programId,
   });
-  
+
   const treasuryVaultPublicKey = treasuryVaultPda({
     eventPublicKey,
     programId,
   });
-  
+
   const gainVaultPdaPublicKey = gainVaultPda({
     eventPublicKey,
     programId,
   });
-  
   return {
     eventPublicKey,
     eventMintPublicKey,
     treasuryVaultPublicKey,
     gainVaultPdaPublicKey,
   };
-  
+}
+
+
+export function acceptedMintATA(publicKey: PublicKey) {
+  const [acceptedMintATA] = PublicKey.findProgramAddressSync(
+    [publicKey.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), acceptedMint.toBuffer()],
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  return acceptedMintATA;
+}
+
+export function eventMintATA(publicKey: PublicKey, eventMint: PublicKey) {
+  const [eventMintATA] = PublicKey.findProgramAddressSync(
+    [publicKey.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), eventMint.toBuffer()],
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  return eventMintATA;
 }
