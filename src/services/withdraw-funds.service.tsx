@@ -1,5 +1,4 @@
-
-import { BN } from "@coral-xyz/anchor";
+import { BN, Program } from "@coral-xyz/anchor";
 import { acceptedMintATA, treasuryVaultPda } from "@/utils/find-pdas";
 import { acceptedMint, DECIMALS_PER_USDC } from "@/utils/solanaProgram";
 import { PublicKey } from "@solana/web3.js";

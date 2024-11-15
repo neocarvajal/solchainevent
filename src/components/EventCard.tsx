@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { EventAccount } from '@/services/get-events.service';
 import SponsorEventFeature from '@/components/sponsor-event/sponsor-event.feature';
 import BuyTicketsFeature from '@/components/buy-tickets/buy-tickets.feature';
@@ -20,7 +19,6 @@ export default function EventCard(event: EventAccount) {
 		<BuyTicketsFeature
 		  publicKey={event.publicKey}
 		  account={event.account}
-		  name={event.account.name} 
 		/>
 	      </div>
 	      <div className="col">
@@ -31,7 +29,6 @@ export default function EventCard(event: EventAccount) {
 		<SponsorEventFeature
 		  publicKey={event.publicKey}
 		  account={event.account}
-		  name={event.account.name} 
 		/>
 	  
 	      </div>

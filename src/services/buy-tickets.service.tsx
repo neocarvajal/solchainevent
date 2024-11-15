@@ -1,7 +1,7 @@
-import { BN } from "@coral-xyz/anchor";
+import { BN, Program } from "@coral-xyz/anchor";
 import { acceptedMintATA, gainVaultPda } from "@/utils/find-pdas";
 import { PublicKey } from "@solana/web3.js";
-import { acceptedMint, DECIMALS_PER_USDC } from "@/utils/solanaProgram";
+import { acceptedMint } from "@/utils/solanaProgram";
 import { EventManager } from "@/utils/idl/idl-event-manager";
 
 interface buyTicketsInterface {

@@ -52,7 +52,7 @@ export default function WithdrawFundsFeature(event: EventAccount) {
 	    title: "Retiro Exitoso!",
 	    text: "Los fondos fueron transferidos a tu Wallet",
 	    icon: "success"
-	  }).then((result) => {
+	  }).then(() => {
 	      router.push('/');
 	  });
 	} else {
@@ -95,15 +95,15 @@ export default function WithdrawFundsFeature(event: EventAccount) {
 	  e.currentTarget.style.transform = 'scale(1)';
 	}}
         onClick={handleOpenModal}
-	disabled={event.isTreasuryVaultZero()} 
+	disabled={isLoading} 
       >
         <p className="fw-bold d-flex align-items-center justify-content-center my-2">
-	  {event.isTreasuryVaultZero() ? "Sin fondos" : "Retirar Fondos"}
+	  {isLoading ? "Retirando..." : "Retirar Fondos"}
 	</p> 
       </button>
 
       <WithdrawFundsModal
-	eventName={event.name}
+	eventName={event.account.name}
 	modalRef={modalRef}
         loading={isLoading}
         onClose={handleCloseModal}

@@ -29,7 +29,7 @@ export default function SponsorEventModal({
     },
   });
 
-  const handleFormSubmit: SubmitHandler<EventFormInputs> = async (data) => {
+  const handleFormSubmit: SubmitHandler<SponsorFormInputs> = async (data) => {
     try {
       console.log("Cantidad de Tokens: ", data);
       onSubmit(data);

@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useEventManagerProgram } from "@/utils/solanaProgram";
 import { EventAccount } from '@/services/get-events.service';
 import { withdrawEarnings } from '@/services/withdraw-earnings.service';
-import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
 export default function WithdrawEarningsFeature(event: EventAccount) {
@@ -26,7 +25,7 @@ export default function WithdrawEarningsFeature(event: EventAccount) {
 	    title: "Retiro Exitoso!",
 	    text: "Las ganancias fueron transferidas a tu Wallet",
 	    icon: "success"
-	  }).then((result) => {
+	  }).then(() => {
 	      router.push('/');
 	  });
 	} else {
@@ -68,7 +67,7 @@ export default function WithdrawEarningsFeature(event: EventAccount) {
 	  e.currentTarget.style.transform = 'scale(1)';
 	}}
 	onClick={withdraw}
-	disabled={event.isTokenCollabZero()}
+	disabled={isLoading}
       >
 	<p className="fw-bold d-flex align-items-center justify-content-center my-2">
 	  {isLoading ? "Retirando..." : "Retirar Ganancias"}

@@ -4,14 +4,8 @@ import { DECIMALS_PER_USDC } from "@/utils/solanaProgram";
 import { CloseEventFeature } from "@/components/close-event/close-event.feature";
 import { EventAccount } from "@/services/get-events.service";
 import WithdrawFundsFeature from "@/components/withdraw-funds/withdraw-funds.feature";
-import Image from 'next/image';
 
 export default function MyEventCard(event: EventAccount) {
-  
-  const isTreasuryVaultZero = () => {
-    const treasuryVaultValue = (event.account.treasuryVaultTotal.toNumber() / DECIMALS_PER_USDC).toFixed(0);
-    return treasuryVaultValue === "0";
-  };
   
   return (
     <div className="col-md-4">
@@ -28,10 +22,8 @@ export default function MyEventCard(event: EventAccount) {
 		  <p>Total: {(event.account.treasuryVaultTotal.toNumber()/DECIMALS_PER_USDC).toFixed(0)}</p>
 		</div>
 		<WithdrawFundsFeature
-		  isTreasuryVaultZero={isTreasuryVaultZero}
 		  publicKey={event.publicKey}
 		  account={event.account}
-		  name={event.account.name}
 		/>
 	      </div>
 	      <div className="col">

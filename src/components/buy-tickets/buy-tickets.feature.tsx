@@ -62,7 +62,7 @@ export default function BuyTicketsFeature(event: EventAccount) {
 	    title: "Has Comprado Tickets!",
 	    text: "Gracias por tu compra",
 	    icon: "success"
-	  }).then((result) => {
+	  }).then(() => {
 	      router.push('/');
 	  });
 	} else {
@@ -120,7 +120,7 @@ export default function BuyTicketsFeature(event: EventAccount) {
       </button>
 
       <BuyTicketsModal
-	eventName={event.name}
+	eventName={event.account.name}
 	modalRef={modalRef}
         loading={isLoading}
 	onClose={handleCloseModal}

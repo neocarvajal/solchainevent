@@ -3,7 +3,7 @@ import { EventAccount, getEvents } from "@/services/get-events.service";
 import { EventManager } from "@/utils/idl/idl-event-manager";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { eventMintPda } from "@/utils/find-pdas";
-import { DECIMALS_PER_USDC, TOKEN_PROGRAM_ID } from "@/utils/solanaProgram";
+import { TOKEN_PROGRAM_ID } from "@/utils/solanaProgram";
 
 export interface TokenAmount {
   amount: string;
@@ -34,11 +34,11 @@ export async function getSponsoredEvents(program: Program<EventManager>, connect
   try {
       const events = await getEvents(program);
       const tokens = await getTokenAccounts(publicKey, connection);
-      let sponsored: SponsoredEvent[] = []
+      const sponsored: SponsoredEvent[] = []
 
-      for (let event of events){
-	let mint = eventMintPda({eventPublicKey: event.publicKey, programId: program.programId});
-	for (let token of tokens){
+      for (const event of events){
+	const mint = eventMintPda({eventPublicKey: event.publicKey, programId: program.programId});
+	for (const token of tokens){
 	  if(mint.toString() == token.info.mint){
 	    sponsored.push({
 	      event: event,

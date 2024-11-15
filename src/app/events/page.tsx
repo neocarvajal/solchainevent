@@ -2,39 +2,40 @@
 
 import React, { useEffect, useState } from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { PublicKey } from "@solana/web3.js";
 import { redirect } from 'next/navigation';
 import MyEventCard from '@/components/MyEventCard';
 import { useEventManagerProgram } from "@/utils/solanaProgram";
 import CreateEventFeature from '@/components/create-event/create-event.feature';
-import { getMyEvents, MyEventInfo } from "@/services/get-my-events.service";
+import { getMyEvents } from "@/services/get-my-events.service";
 import { EventAccount } from "@/services/get-events.service";
 
 export default function Events() {
   const program = useEventManagerProgram();
   const { connection } = useConnection();
-  const [events, setEvents] = useState<EventAccount[]>([])
-  const { publicKey } = useWallet()
-    
-  if(!publicKey){
-    return redirect('/')
-  }
+  const [events, setEvents] = useState<EventAccount[]>([]);
+  const { publicKey } = useWallet();
   
-  const getEvents = async () => {
-    try {
-      getMyEvents(connection, program, publicKey).then( (events) => {
-        if(events){
-          setEvents(events)
-        }
-      })
-    } catch (error) {
-      console.error("Error obteniendo eventos:", error);
+  useEffect(() => { 
+    if (publicKey) { 
+      getEvents(publicKey); 
+    }
+  }, [publicKey]);
+  
+  const getEvents = async (publicKey: PublicKey) => { 
+    try { 
+      const events = await getMyEvents(connection, program, publicKey); 
+      if (events) { 
+	setEvents(events); 
+      } 
+    } catch (error) { 
+      console.error("Error obteniendo eventos:", error); 
     }
   };
-
-  useEffect(() => {
-    getEvents()
-  }, []
-  )
+  
+  if(!publicKey){
+    return redirect('/');
+  }
   
   return(
     <>

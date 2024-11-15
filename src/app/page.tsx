@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import EventCard from "@/components/EventCard";
 import { useEventManagerProgram } from '@/utils/solanaProgram';
 import { EventAccount, getEvents } from '@/services/get-events.service';
-import { CreateEventFeature } from "@/components/create-event/create-event.feature";
 
 export default function Home() {
   
@@ -25,7 +24,7 @@ export default function Home() {
   
   useEffect(() => {
     getAllEvents();
-  }, []);
+  }, [events]);
   
   return (
     <>

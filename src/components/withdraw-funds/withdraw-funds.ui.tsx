@@ -81,7 +81,7 @@ export default function WithdrawFundsModal({
 		})}
                 type="number"
 		step={1}
-                className={`form-control ${ errors.quantity ? "border-red-500" : "border-gray-300"}`}
+                className={`form-control ${ errors.amount ? "border-red-500" : "border-gray-300"}`}
               />
               {errors.amount && (
                 <p className="mt-1 text-sm text-danger">{errors.amount.message}</p>

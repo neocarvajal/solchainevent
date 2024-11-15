@@ -1,4 +1,5 @@
-import { acceptedMintATA, eventMintATA, eventMintPda, gainVaultPda, treasuryVaultPda } from "@/utils/find-pdas";
+import { Program} from "@coral-xyz/anchor";
+import { acceptedMintATA, eventMintATA, eventMintPda, gainVaultPda } from "@/utils/find-pdas";
 import { acceptedMint } from "@/utils/solanaProgram";
 import { PublicKey } from "@solana/web3.js";
 import { EventManager } from "@/utils/idl/idl-event-manager";

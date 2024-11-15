@@ -1,15 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { SponsoredEvent as CollaborationCardProp } from "@/services/get-sponsored-events.service";
 import WithdrawEarningsFeature from "@/components/withdraw-earnings/withdraw-earnings.feature";
 
 export default function CollabCard(collab: CollaborationCardProp) {
-  
-  const isTokenCollabZero = () => {
-    const tokenCollabValue = collab.tokens.toFixed(0);
-    return tokenCollabValue === "0";
-  };
   
   return (
    <div className="col-md-4">
@@ -28,7 +22,6 @@ export default function CollabCard(collab: CollaborationCardProp) {
 		    <WithdrawEarningsFeature
 		      publicKey={collab.event.publicKey}
 		      account={collab.event.account}
-		      isTokenCollabZero={isTokenCollabZero}
 		    />
 		    
 		  ) : (

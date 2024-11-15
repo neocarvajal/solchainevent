@@ -65,7 +65,7 @@ export default function SponsorEventFeature(event: EventAccount) {
 	    title: "Has Colaborado!",
 	    text: "Gracias por Colaborar",
 	    icon: "success"
-	  }).then((result) => {
+	  }).then(() => {
 	      router.push('/');
 	  });
 	} else {
@@ -124,7 +124,7 @@ export default function SponsorEventFeature(event: EventAccount) {
       </button>
 
       <SponsorEventModal
-	eventName={event.name}
+	eventName={event.account.name}
 	modalRef={modalRef}
         loading={isLoading}
 	onClose={handleCloseModal}

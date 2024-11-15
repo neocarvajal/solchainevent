@@ -1,3 +1,4 @@
+import { Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { EventManager } from "@/utils/idl/idl-event-manager";
 

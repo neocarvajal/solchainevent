@@ -2,8 +2,7 @@ import { EventManager } from "@/utils/idl/idl-event-manager";
 import { Program } from "@coral-xyz/anchor";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { EventAccount, getEvents } from "@/services/get-events.service";
-import { gainVaultPda, treasuryVaultPda } from "@/utils/find-pdas";
-import { Account, getAccount } from "@solana/spl-token";
+import { Account } from "@solana/spl-token";
 
 export interface MyEventInfo {
   event: EventAccount;

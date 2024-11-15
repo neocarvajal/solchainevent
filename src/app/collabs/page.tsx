@@ -31,9 +31,9 @@ export default function Collabs() {
   };
 
   useEffect(() => {
-    getSponsored()
-  }, []
-  )
+      getSponsored()
+    }, []
+  );
   
   return (
   <>

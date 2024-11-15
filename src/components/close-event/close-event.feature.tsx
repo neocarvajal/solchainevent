@@ -28,7 +28,7 @@ export function CloseEventFeature(event: EventAccount) {
 	    text: "El evento ha sido cerrado con éxito.",
 	    icon: "success",
 	    confirmButtonColor: "#28a745"
-	  }).then((result) => {
+	  }).then(() => {
 	      router.push('/');
 	  });
 	} else {
@@ -78,7 +78,6 @@ export function CloseEventFeature(event: EventAccount) {
       </button>
 	<CloseEventModal
 	  isOpen={isModalOpen}
-	  loading={isLoading}
 	  onClose={() => setIsModalOpen(false)}
 	  onSubmit={onSubmit}
 	/>

@@ -2,12 +2,10 @@ import Swal from "sweetalert2";
 
 export default function CloseEventModal({
   isOpen,
-  loading,
   onClose,
   onSubmit,
 }: {
   isOpen: boolean;
-  loading: boolean;
   onClose: () => void;
   onSubmit: () => Promise<void>;
 }) {
@@ -34,7 +32,7 @@ export default function CloseEventModal({
       });
 
     } catch(err) {
-      console.error("Error cerrando el evento :", error);
+      console.error("Error cerrando el evento :", err);
     }
   };
 
